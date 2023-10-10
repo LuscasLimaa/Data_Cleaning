@@ -1,0 +1,16 @@
+# Ver quais os valores 
+print(sorted(df['danceability'].unique()))
+
+# Criando limites e transformando os dados usando a função cut
+limi = [0, 35, 70, 100]
+rotulos = ['baixo', 'medio', 'alto']
+df['danceability_2'] = pd.cut(df['danceability'], bins=limi, labels=rotulos)
+df.head(10)
+
+# Apagar a coluna numerica 
+df.drop('danceability', axis=1, inplace=True)
+df.head()
+
+#Juntando os DF
+df_3 = pd.concat([df_1, df_2], axis=1)
+df_3.head()
