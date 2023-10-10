@@ -1,0 +1,32 @@
+import numpy as np 
+import pandas as pd
+
+
+df = pd.read_csv('NOME.csv', encoding='ISO-8859-1')
+df.head()
+
+
+nan_values = df.isna()
+	print(nan_values)
+
+
+any_missing_values = nan_values.any().any()
+
+
+any_missing_values_in_column = nan_values.any() 
+missing_value_count = df.isnull().sum()
+for column, has_missing in any_missing_values_in_column.items():
+    if has_missing: #verifica se é TRUE
+        count = missing_value_count[column]
+        print(f"-----> Column '{column}' has {count} missing values.") 
+        
+print("\nMissing Values in the Entire DataFrame?")
+print(any_missing_values)
+
+print("\nMissing Values in Each Column?")
+print(any_missing_values_in_column)
+
+print("\nMissing Value Counts in Each Column:")
+print(missing_value_count)
+
+df['NOME'].fillna('NOME', inplace=True)
